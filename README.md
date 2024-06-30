@@ -1,4 +1,4 @@
-# Misskey Hub Shortlink Service
+# Misskey Hub Shortlink Generator
 
 Misskey Project関連のページにアクセスしやすくするための短縮リンクページを生成するためのプログラムです。
 
