@@ -16,7 +16,12 @@ export const redirectSource: [string, string][] = [
 
     // よく使われるガイド集
     ['about', '/docs/about-misskey/'],
-    ['warning', '/docs/for-users/onboarding/warning/'],
+    ['troubleshooting', '/docs/for-users/resources/troubleshooting/'],
+    ['user-warning', '/docs/for-users/onboarding/warning/'],
+    ['user-help', '/docs/for-users/'],
     ['2fa', '/docs/for-users/stepped-guides/how-to-enable-2fa/'],
     ['pwa', '/docs/for-users/stepped-guides/how-to-use-pwa/'],
+
+    // ドキュメント
+    ['spec/share', '/docs/for-users/features/share-form/'],
 ];
