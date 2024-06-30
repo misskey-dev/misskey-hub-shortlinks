@@ -11,6 +11,8 @@ function getHtml(dest: string) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="0; URL=${_dest}">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="${_dest}">
     <title>Redirecting...</title>
 </head>
 <body>
