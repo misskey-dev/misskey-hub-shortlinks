@@ -23,6 +23,20 @@ function getHtml(dest: string) {
 </html>`;   
 }
 
+function get404Html() {
+    return `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>404 Not Found</title>
+</head>
+<body>
+    <h1>404 Not Found</h1>
+    <p>The requested URL was not found on this server.</p>
+</body>
+</html>`;
+}
+
 async function build() {
     const distDir = 'dist';
     const __dirname = import.meta.dirname;
@@ -65,9 +79,13 @@ async function build() {
             console.log(`Writing ${path}`);
             await Bun.write(path, html);
         }),
-        (async (): Promise<void> => {
+        (() => {
             console.log(`Writing ${distPath}/index.html`);
-            Bun.write(`${distPath}/index.html`, getHtml('/'))
+            return Bun.write(`${distPath}/index.html`, getHtml('/'))
+        })(),
+        (() => {
+            console.log(`Writing ${distPath}/404.html`);
+            return Bun.write(`${distPath}/404.html`, get404Html());
         })(),
     ]);
 }
