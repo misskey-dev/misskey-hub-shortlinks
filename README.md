@@ -25,7 +25,12 @@ To run:
 bun run build
 ```
 
+This will generate a `dist` directory with the generated html files.
+
+---
+
 This project was created using `bun init` in bun v1.1.17. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
 
 ## License
-MIT
+(c) 2024 kakkokari-gtyih and Misskey Project.  
+Released under the MIT License.
