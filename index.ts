@@ -1,11 +1,13 @@
 import { redirectSource } from './redirect-source';
 import { exists, rm } from 'node:fs/promises';
+import escapeHTML from 'escape-html';
 
 function getHtml(dest: string) {
     let _dest = dest;
     if (!dest.startsWith('http')) {
         _dest = `https://misskey-hub.net${dest}`;
     }
+    _dest = escapeHTML(_dest);
     return `<!DOCTYPE html>
 <html>
 <head>
@@ -28,14 +30,38 @@ async function build() {
     console.log(`Building to ${distPath}`);
 
     if (await exists(distPath)) {
-        console.log('Removing existing dist directory...');
+        console.log('Cleaning existing dist directory...');
         await rm(distPath, { recursive: true });
     }
 
     await Promise.allSettled([
-        ...redirectSource.map(async ([short, dest]) => {
+        ...redirectSource.filter(([short, dest]) => {
+            // shortのパスが相対で戻っていないかチェック
+            if (short.includes('..')) {
+                console.error(`Invalid short path: ${short}`);
+                return false;
+            }
+
+            // 正しいURLかどうかをチェック
+            if (dest.startsWith('http')) {
+                try {
+                    new URL(dest);
+                    return true;
+                } catch (err) {
+                    return false;
+                }
+            } else {
+                try {
+                    new URL(dest, 'https://misskey-hub.net');
+                    return true;
+                } catch (err) {
+                    return false;
+                }
+            }
+        }).map(async ([short, dest]) => {
             const html = getHtml(dest);
-            const path = `${distPath}/${short}/index.html`;
+            const _short = short.startsWith('/') ? short.slice(1) : short;
+            const path = `${distPath}/${_short}/index.html`;
             console.log(`Writing ${path}`);
             await Bun.write(path, html);
         }),
@@ -46,4 +72,11 @@ async function build() {
     ]);
 }
 
-build().then(() => console.log('Build completed.'));
+const now = performance.now();
+build().then(() => {
+    const time = Math.round((performance.now() - now) * 1000) / 1000;
+    console.log(`Build completed in ${time}ms.`);
+}).catch((err) => {
+    console.error(err);
+    process.exit(1);
+});
