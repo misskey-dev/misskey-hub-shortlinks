@@ -1,9 +1,9 @@
 {
   "name": "misskey-hub-shortlinks",
-  "module": "index.ts",
+  "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "bun run ./index.ts"
+    "build": "bun run ./src/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
