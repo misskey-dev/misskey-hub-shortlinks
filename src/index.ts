@@ -17,7 +17,7 @@ function getHtml(dest: string) {
     <title>Redirecting...</title>
 </head>
 <body>
-    <p>Redirecting you to <a href="${_dest}">${_dest}</a>...</p>
+    <p>Redirecting you to <a href="${_dest}">${_dest}</a></p>
 </body>
 </html>`;   
 }
