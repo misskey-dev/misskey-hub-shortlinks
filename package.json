@@ -2,8 +2,7 @@
   "name": "misskey-hub-shortlinks",
   "module": "src/index.ts",
   "devDependencies": {
-    "@types/bun": "latest",
-    "@types/escape-html": "^1.0.4"
+    "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
