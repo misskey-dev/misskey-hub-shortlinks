@@ -1,13 +1,12 @@
 import { redirectSource } from './redirect-source';
 import { exists, rm } from 'node:fs/promises';
-import escapeHTML from 'escape-html';
 
 function getHtml(dest: string) {
     let _dest = dest;
     if (!dest.startsWith('http')) {
         _dest = `https://misskey-hub.net${dest}`;
     }
-    _dest = escapeHTML(_dest);
+    _dest = Bun.escapeHTML(_dest);
     return `<!DOCTYPE html>
 <html>
 <head>

@@ -1,10 +1,6 @@
 {
   "name": "misskey-hub-shortlinks",
   "module": "src/index.ts",
-  "type": "module",
-  "scripts": {
-    "build": "bun run ./src/index.ts"
-  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/escape-html": "^1.0.4"
@@ -12,7 +8,8 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "dependencies": {
-    "escape-html": "^1.0.3"
-  }
+  "scripts": {
+    "build": "bun run ./src/index.ts"
+  },
+  "type": "module"
 }
