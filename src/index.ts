@@ -39,7 +39,7 @@ function get404Html() {
 async function build() {
     const distDir = 'dist';
     const __dirname = import.meta.dirname;
-    const distPath = `${__dirname}/${distDir}`;
+    const distPath = `${__dirname}/../${distDir}`;
     console.log(`Building to ${distPath}`);
 
     if (await exists(distPath)) {
